@@ -5,32 +5,45 @@ using Random = System.Random;
 
 public class ObstacleSpawn : MonoBehaviour
 {
-    private int difficultyLevel = 1;
-    private int nextDifficultySpikeElevation = 100;
+    public int difficultyLevel = 1;
+    public int nextDifficultySpikeElevation = 100;
+    public float maxWaitTime = 5;
     
     [SerializeField]
     private List<ObstacleBehavior> obstacles;
     
+    void Start() {
+        StartCoroutine(ObstacleSpawningCoroutine(difficultyLevel));
+    }
 
-    // Update is called once per frame
     void Update()
     {
-        ObstacleSpawningRoutine(difficultyLevel);
-
         if (transform.position.y > nextDifficultySpikeElevation) {
             difficultyLevel += 1;
+            if (maxWaitTime > 1) {
+                maxWaitTime -= 0.2f;
+            }
             nextDifficultySpikeElevation += 100;
         }  
     }
 
-    private void ObstacleSpawningRoutine(int difficultyLevel) {
+    private IEnumerator ObstacleSpawningCoroutine(int difficultyLevel) {
         Random rnd = new Random();
-        int spawnRoll  = rnd.Next(1, 11);  // creates a number between 1 and 11. if this number is bigger than the hazard level of an obstacle type, said obstacle is in the running to spawn.
         foreach (var obstacle in obstacles) {
-            if (spawnRoll > obstacle.hazardLevel) {
-                //change spawning below to happen at a rate that depends on difficultyLevel
-                Instantiate(obstacle);
-            }
+            
+                int hazardRoll  = rnd.Next(1, 11);  // creates a number between 1 and 10. if this number is >= than the hazard level of an obstacle type, obstacle that satisfies this is the next obstacle that will spawn.
+                
+                if (hazardRoll >= obstacle.hazardLevel) {
+                    //60% chance of spawning an obstacle ever time an obstacle is considered in the running
+                    int spawnRoll  = rnd.Next(1, 11);
+                    if (spawnRoll > 4) {
+                        Instantiate(obstacle);
+                    }
+                }
+            
         }
+
+        yield return new WaitForSeconds((float) rnd.NextDouble()*maxWaitTime);
+        StartCoroutine(ObstacleSpawningCoroutine(difficultyLevel));
     }
 }
