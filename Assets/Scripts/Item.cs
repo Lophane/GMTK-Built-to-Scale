@@ -11,6 +11,9 @@ public class Item : MonoBehaviour
     private int quantity;
     [SerializeField]
     private Sprite sprite;
+    [TextArea]
+    [SerializeField]
+    private string itemDescription;
 
     private InventoryManager inventoryManager;
     // Start is called before the first frame update
@@ -19,8 +22,21 @@ public class Item : MonoBehaviour
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            inventoryManager.Additem(itemName, quantity, sprite);
+            Destroy(gameObject);
+        }
+    }*/
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            inventoryManager.Additem(itemName, quantity, sprite, itemDescription);
+        }
     }
+
 }
