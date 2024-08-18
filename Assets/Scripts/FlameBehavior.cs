@@ -31,13 +31,23 @@ public class FlameBehavior : MonoBehaviour
 
     void Update()
     {
-        foreach (var obstacle in FindObjectsOfType<ObstacleBehavior>()) {
-            if (this.GetComponent<Collider2D>().IsTouching(obstacle.GetComponent<Collider2D>())) {
-                obstacle.depleteDurability(flameStrength);
-            }
-        }
+        // foreach (var obstacle in FindObjectsOfType<ObstacleBehavior>()) {
+        //     if (this.GetComponent<Collider2D>().IsTouching(obstacle.GetComponent<Collider2D>())) {
+        //         obstacle.depleteDurability(flameStrength);
+        //     }
+        // }
   
     }
+
+    private void OnParticleCollision(GameObject obstacle)
+    {
+        if (obstacle.gameObject.GetComponent<ObstacleBehavior>() != null)
+        {
+            Debug.Log("collision fire and object");
+            obstacle.gameObject.GetComponent<ObstacleBehavior>().depleteDurability(flameStrength);
+        }
+    }
+
 
 
 

@@ -85,7 +85,7 @@ public class ObstacleBehavior : MonoBehaviour
         //if obstacle hits player, damage player and blow up obstacle
         PlayerBehavior playerBehavior = target.GetComponent<PlayerBehavior>();
         if (this.GetComponent<Collider2D>().IsTouching(target.GetComponent<Collider2D>())) {
-            playerBehavior.depleteHealth(hazardLevel);
+            playerBehavior.DepleteHealth(hazardLevel);
             if (obstacleType == ObstacleType.Boulder) {
                 // play different animation
                 Destroy(this.gameObject);

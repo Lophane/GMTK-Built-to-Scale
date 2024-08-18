@@ -5,12 +5,26 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour
 {
 
-    //stats
+    //stats/condition
+    public bool alive = true;
+    public bool isHigh = false;
     private int maxHealth = 1;
     private int currentHealth;
     private int cooldownReducer = 0;
     [SerializeField]
     private List<AbilityType> abilities;
+
+    //sound effect stuff
+    AudioSource[] audioSources;
+    private AudioSource DeathAudioSource;
+    [SerializeField]
+    private AudioClip lowElevationDeathClip;
+    [SerializeField]
+    private AudioClip highElevationDeathClip;
+
+    private AudioSource SpawnAudioSource;
+    [SerializeField]
+    private AudioClip spawnClip;
 
 
     //the below are all the game objects and stuff that'll be used for the variaous abilities
@@ -19,8 +33,27 @@ public class PlayerBehavior : MonoBehaviour
     FlameBehavior flameBehavior;
 
 
+    public void PlayDeathSound()
+    {
+        if (transform.position.y < 500) {
+            DeathAudioSource.clip = lowElevationDeathClip;
+        }
+        else {
+            DeathAudioSource.clip = highElevationDeathClip;
+        }
+        DeathAudioSource.Play();
+    }
+    public void PlaySpawnSound()
+    {
+        SpawnAudioSource.clip = spawnClip;
+        SpawnAudioSource.Play();
+    }
+
+    public void SetHealth(int health) {
+        currentHealth = health;
+    }
     
-    public void depleteHealth(int damage) {
+    public void DepleteHealth(int damage) {
         currentHealth -= damage;
         if (currentHealth < 0) {
             currentHealth = 0;
@@ -30,6 +63,12 @@ public class PlayerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSources = GetComponents<AudioSource>();
+        SpawnAudioSource = audioSources[0];
+        DeathAudioSource = audioSources[1]; 
+
+        PlaySpawnSound();
+
         currentHealth = maxHealth; 
 
         foreach (var ability in abilities) {
@@ -40,26 +79,35 @@ public class PlayerBehavior : MonoBehaviour
     private IEnumerator AbilityActivatingCoroutine(AbilityType ability) {
         if (ability == AbilityType.Flamethrower) {
             float timeElapsed = 0;
-            while(timeElapsed < 3) {
+            while(timeElapsed < 1) {
                 timeElapsed += Time.deltaTime;
                 Instantiate(flameBehavior);
                 yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(40-cooldownReducer);
+            yield return new WaitForSeconds(10-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
         }
 
 
     }
 
+    private void Death() {
+        // Debug.Log("YOU DIED BOZOOOO");
+        //this is where to add the code for what happens when game ends.
+        PlayDeathSound();
+        //then switch scene to gameover scene
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth <= 0) {
-            //this is where to add the code for what happens when game ends. below is just a placeholder.
-            Debug.Log("teehee you are dead");
+        if (alive == true && currentHealth <= 0) {
+            alive = false;
+            Death();
         }   
     }
+
+
 }
 
 
