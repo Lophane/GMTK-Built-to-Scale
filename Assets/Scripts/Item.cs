@@ -8,14 +8,15 @@ public class Item : MonoBehaviour
     [SerializeField]
     private string itemName;
     [SerializeField]
-    private int quantity;
-    [SerializeField]
     private Sprite sprite;
     [TextArea]
     [SerializeField]
     private string itemDescription;
 
     private InventoryManager inventoryManager;
+
+    public ItemType itemType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class Item : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            inventoryManager.Additem(itemName, quantity, sprite, itemDescription);
+            inventoryManager.Additem(itemName, sprite, itemDescription, itemType);
         }
     }
 

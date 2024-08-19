@@ -10,11 +10,11 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     //=======ITEM DATA=======//
 
     public string itemName;
-    public int quantity;
     public Sprite itemSprite;
     public bool isFull;
     public string itemDescription;
     public Sprite emptySprite;
+    public ItemType itemType;
 
     //=======ITEM SLOT=======//
 
@@ -41,17 +41,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     }
 
 
-    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public void AddItem(string itemName, Sprite itemSprite, string itemDescription, ItemType itemType)
     {
         this.itemName = itemName;
-        this.quantity = quantity;
         this.itemSprite = itemSprite;
-        this.itemDescription = itemDescription;
+        //this.itemDescription = itemDescription;
+        this.itemType = itemType;
 
         isFull = true;
-
-        quantityText.text = quantity.ToString();
-        quantityText.enabled = true;
         itemImage.sprite = itemSprite;
     }
 
@@ -75,8 +72,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         inventoryManager.DeselectAllSlots();
         selectedShader.SetActive(true);
         thisItemSelected = true;
-        itemDescriptionNameText.text = itemName;
-        itemDescriptionText.text = itemDescription;
+        //itemDescriptionNameText.text = itemName;
+        //itemDescriptionText.text = itemDescription;
         itemDescriptionImage.sprite = itemSprite;
         if (itemDescriptionImage.sprite == null)
             itemDescriptionImage.sprite = emptySprite;

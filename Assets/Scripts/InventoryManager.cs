@@ -21,13 +21,13 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void Additem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public void Additem(string itemName, Sprite itemSprite, string itemDescription, ItemType itemType)
     {
         for (int i = 0; i < itemSlot.Length; i++)
         {
             if (itemSlot[i].isFull == false)
             {
-                itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription);
+                itemSlot[i].AddItem(itemName, itemSprite, itemDescription, itemType);
                 return;
             }
         }
@@ -42,4 +42,15 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    
+
+
 }
+
+public enum ItemType
+{
+    head,
+    arms,
+    legs,
+    none
+};
