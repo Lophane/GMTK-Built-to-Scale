@@ -8,7 +8,7 @@ public class ObstacleBehavior : MonoBehaviour
     //these below variables will be set in the inspector for the prefabs of each unique obstacletype
     public ObstacleType obstacleType;
     public int hazardLevel;
-    private int durability;
+    public int durability;
     private GameObject target;
     
     private void Awake()
@@ -23,6 +23,10 @@ public class ObstacleBehavior : MonoBehaviour
         if (obstacleType == ObstacleType.Gargoyle) {
             hazardLevel = 3;
             durability = 3;
+        }
+        if (obstacleType == ObstacleType.VileGrape) {
+            hazardLevel = 5;
+            durability = 5;
         }
         Random rnd = new Random();
         transform.position = new Vector3(((float) rnd.NextDouble()) * (climbing.rightLimit - climbing.leftLimit) + climbing.leftLimit, target.transform.position.y + 20f, 0f);
@@ -68,13 +72,44 @@ public class ObstacleBehavior : MonoBehaviour
                 timeElapsed += Time.deltaTime;
                 float lerpStep = timeElapsed/fallDuration;
                 if (startPosition.x < 0) {
-                    transform.position = Vector3.Lerp(startPosition, startPosition + new Vector3(10f, -40f, 0f), lerpStep);
+                    transform.position = Vector3.Lerp(startPosition, startPosition + new Vector3(20f, -40f, 0f), lerpStep);
                 }
                 if (startPosition.x > 0) {
-                    transform.position = Vector3.Lerp(startPosition, startPosition + new Vector3(-10f, -40f, 0f), lerpStep);
+                    transform.position = Vector3.Lerp(startPosition, startPosition + new Vector3(-20f, -40f, 0f), lerpStep);
                 }
                 yield return null;
             }
+        }
+
+        if (obstacleType == ObstacleType.VileGrape) {
+
+            
+            Vector3 startPosition = transform.position;
+            while (true) {
+                if (startPosition.x < 0) {
+                    Vector3 endPosition = new Vector3(target.GetComponent<Climbing>().rightLimit, startPosition.y, 0f);
+                    float timeElapsed = 0;
+                    while (Mathf.Approximately(startPosition.x, endPosition.x) == false) {
+                        timeElapsed += Time.deltaTime;
+                        float lerpStep = 2;
+                        transform.position = Vector3.Lerp(startPosition,endPosition, lerpStep);
+                        yield return null;
+                    }
+                }
+
+                else {
+                    Vector3 endPosition = new Vector3(target.GetComponent<Climbing>().leftLimit, startPosition.y, 0f);
+                    float timeElapsed = 0;
+                    while (Mathf.Approximately(startPosition.x, endPosition.x) == false) {
+                        timeElapsed += Time.deltaTime;
+                        float lerpStep = 2;
+                        transform.position = Vector3.Lerp(startPosition,endPosition, lerpStep);
+                        yield return null;
+                    }
+                }
+            }
+
+            
         }
 
     }
@@ -85,13 +120,18 @@ public class ObstacleBehavior : MonoBehaviour
         //if obstacle hits player, damage player and blow up obstacle
         PlayerBehavior playerBehavior = target.GetComponent<PlayerBehavior>();
         if (this.GetComponent<Collider2D>().IsTouching(target.GetComponent<Collider2D>())) {
-            playerBehavior.DepleteHealth(hazardLevel);
+            if (playerBehavior.isVulnerable == true) {
+                playerBehavior.DepleteHealth(hazardLevel);
+            }
             if (obstacleType == ObstacleType.Boulder) {
                 // play different animation
                 Destroy(this.gameObject);
             }
             if (obstacleType == ObstacleType.Gargoyle) {
                 // play different animation
+                Destroy(this.gameObject);
+            }
+            if (obstacleType == ObstacleType.VileGrape) {
                 Destroy(this.gameObject);
             }
         }
@@ -113,5 +153,5 @@ public enum ObstacleType {  //obstacletype of the obstacle the script is attache
     None,
     Boulder,
     Gargoyle,
-    Fire
+    VileGrape
 }

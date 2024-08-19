@@ -30,6 +30,7 @@ public class ObstacleSpawn : MonoBehaviour
     private IEnumerator ObstacleSpawningCoroutine(int difficultyLevel) {
         Random rnd = new Random();
         foreach (var obstacle in obstacles) {
+                // Debug.Log(obstacle.obstacleType);
             
                 int hazardRoll  = rnd.Next(1, 11);  // creates a number between 1 and 10. if this number is >= than the hazard level of an obstacle type, obstacle that satisfies this is the next obstacle that will spawn.
                 

@@ -7,6 +7,7 @@ public class PlayerBehavior : MonoBehaviour
 
     //stats/condition
     public bool alive = true;
+    public bool isVulnerable = true;
     public bool isHigh = false;
     private int maxHealth = 1;
     private int currentHealth;
@@ -31,7 +32,15 @@ public class PlayerBehavior : MonoBehaviour
     //a given layout for the robot might not need all of these cuz it wont necessarily have all the corresponding abilities, but we still pass them in regardless
     [SerializeField]
     FlameBehavior flameBehavior;
-
+    [SerializeField] 
+    GameObject shield;
+    
+    public void ToggleShieldOn() {
+        transform.parent = shield.transform;
+    }
+    public void ToggleShieldOff() {
+        Destroy(transform.GetChild(0).gameObject);
+    }
 
     public void PlayDeathSound()
     {
@@ -88,10 +97,24 @@ public class PlayerBehavior : MonoBehaviour
             StartCoroutine(AbilityActivatingCoroutine(ability));
         }
 
+        if (ability == AbilityType.Shield) {
+            float timeElapsed = 0;
+            isVulnerable = false;
+            ToggleShieldOn();
+            while (timeElapsed < 10) {
+                timeElapsed += Time.deltaTime;
+            }
+            ToggleShieldOff();
+            isVulnerable = true;
+            yield return new WaitForSeconds(20-cooldownReducer);
+            StartCoroutine(AbilityActivatingCoroutine(ability));
+        }
+
 
     }
 
-    private void Death() {
+    public void Death() {
+        alive = false;
         // Debug.Log("YOU DIED BOZOOOO");
         //this is where to add the code for what happens when game ends.
         PlayDeathSound();
@@ -102,7 +125,6 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         if (alive == true && currentHealth <= 0) {
-            alive = false;
             Death();
         }   
     }

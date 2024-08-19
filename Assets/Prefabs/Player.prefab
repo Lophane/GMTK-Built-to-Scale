@@ -169,6 +169,7 @@ MonoBehaviour:
   obstacles:
   - {fileID: -5916099893524571221, guid: 98264c0e19bb25c4c9b3a31f76c0f69d, type: 3}
   - {fileID: 2701169299493552128, guid: 15502180b7efe614686444b6270ec3d6, type: 3}
+  - {fileID: 4126338475337864147, guid: ae1f2dea0207b9b458d5ab71b09229d2, type: 3}
 --- !u!114 &3717512940990514478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,12 +183,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 1
+  isVulnerable: 1
   isHigh: 0
-  abilities: 01000000
+  abilities: 0100000002000000
   lowElevationDeathClip: {fileID: 8300000, guid: 641bd377d928bd342b648e9d8ede5257, type: 3}
   highElevationDeathClip: {fileID: 8300000, guid: 500792542db247645addd4de03c33730, type: 3}
   spawnClip: {fileID: 8300000, guid: 68fd7f6896cf7834a8f7718cd0b29eb2, type: 3}
   flameBehavior: {fileID: 3697637536283448691, guid: 91456947b41d8e84cbbdf450c9967e89, type: 3}
+  shieldBehavior: {fileID: 2431375130626592194, guid: 9c94f54d42291454a9cae65ed18c714f, type: 3}
 --- !u!82 &1922761546901498721
 AudioSource:
   m_ObjectHideFlags: 0
