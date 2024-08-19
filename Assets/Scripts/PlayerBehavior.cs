@@ -6,14 +6,17 @@ public class PlayerBehavior : MonoBehaviour
 {
 
     //stats/condition
+    [SerializeField]
+    public GregoryStats stats;
+
     public bool alive = true;
     public bool isVulnerable = true;
     public bool isHigh = false;
-    private int maxHealth = 1;
+    private int maxHealth;
     private int currentHealth;
-    private int cooldownReducer = 0;
-    [SerializeField]
-    private List<AbilityType> abilities;
+    private int cooldownReducer;
+    AbilityType[] possibleAbilities = {AbilityType.Flamethrower, AbilityType.Shield};
+    private AbilityType ability;
 
     //sound effect stuff
     AudioSource[] audioSources;
@@ -32,15 +35,13 @@ public class PlayerBehavior : MonoBehaviour
     //a given layout for the robot might not need all of these cuz it wont necessarily have all the corresponding abilities, but we still pass them in regardless
     [SerializeField]
     FlameBehavior flameBehavior;
-    [SerializeField] 
-    GameObject shield;
     
-    public void ToggleShieldOn() {
-        transform.parent = shield.transform;
-    }
-    public void ToggleShieldOff() {
-        Destroy(transform.GetChild(0).gameObject);
-    }
+    // public void ToggleShieldOn() {
+    //     this.gameObject.transform.GetChild(0).SetActive(true);
+    // }
+    // public void ToggleShieldOff() {
+    //     this.gameObject.transform.GetChild(0).SetActive(false);
+    // }
 
     public void PlayDeathSound()
     {
@@ -78,11 +79,13 @@ public class PlayerBehavior : MonoBehaviour
 
         PlaySpawnSound();
 
-        currentHealth = maxHealth; 
 
-        foreach (var ability in abilities) {
-            StartCoroutine(AbilityActivatingCoroutine(ability));
-        }
+        maxHealth = stats.health;
+        currentHealth = maxHealth; 
+        cooldownReducer = stats.cooldownReduction;
+        ability = possibleAbilities[stats.ability];
+
+        StartCoroutine(AbilityActivatingCoroutine(ability));
     }
 
     private IEnumerator AbilityActivatingCoroutine(AbilityType ability) {
@@ -98,13 +101,14 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         if (ability == AbilityType.Shield) {
+            Debug.Log("SHIELD WOOO");
             float timeElapsed = 0;
             isVulnerable = false;
-            ToggleShieldOn();
+            // ToggleShieldOn();
             while (timeElapsed < 10) {
                 timeElapsed += Time.deltaTime;
             }
-            ToggleShieldOff();
+            // ToggleShieldOff();
             isVulnerable = true;
             yield return new WaitForSeconds(20-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
