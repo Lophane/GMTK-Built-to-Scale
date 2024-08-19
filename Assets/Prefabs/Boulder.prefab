@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8995641501053620649}
   - component: {fileID: -5916099893524571221}
   - component: {fileID: 3182183205790626035}
-  - component: {fileID: -7315519812583616252}
+  - component: {fileID: 6629580022372496716}
   m_Layer: 0
   m_Name: Boulder
   m_TagString: Untagged
@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleType: 1
   hazardLevel: 1
-  target: {fileID: 0}
 --- !u!58 &3182183205790626035
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +136,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!50 &-7315519812583616252
+--- !u!50 &6629580022372496716
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

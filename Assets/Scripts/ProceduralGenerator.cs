@@ -15,7 +15,7 @@ public class ProceduralGenerator : MonoBehaviour
     void Start()
     {
 
-        Instantiate(initialPrefab, new Vector3(0, player.position.y, player.position.z), Quaternion.identity);
+        Instantiate(initialPrefab, new Vector3(0, player.position.y, player.position.z+1), Quaternion.identity);
 
         nextSpawnY = player.position.y + 10f;
 
@@ -36,7 +36,7 @@ public class ProceduralGenerator : MonoBehaviour
     void SpawnNextTilemap()
     {
         int index = Random.Range(0, tilemapPrefabs.Length);
-        Vector3 spawnPosition = new Vector3(0, nextSpawnY, player.position.z);
+        Vector3 spawnPosition = new Vector3(0, nextSpawnY, player.position.z+1);
         Instantiate(tilemapPrefabs[index], spawnPosition, Quaternion.identity);
         nextSpawnY += spawnHeight;
     }
