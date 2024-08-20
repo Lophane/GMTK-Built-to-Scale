@@ -25,7 +25,7 @@ public class Climbing : MonoBehaviour
 
     private IEnumerator ClimbInDirection(Vector3 startPosition, Vector3 endPosition) {
         float timeElapsed = 0;
-        float movementDuration = 0.3f - 0.1f*stats.speed;
+        float movementDuration = 0.8f - 0.03f*stats.speed;
         if (movementDuration <= 0) {
             movementDuration = 0.01f;
         }
@@ -57,7 +57,7 @@ public class Climbing : MonoBehaviour
             Destroy(Player.GetComponent<Rigidbody2D>());
         }
 
-        if(transform.position.y < 0 && Player.GetComponent<PlayerBehavior>().alive == true) {
+        if(transform.position.y < -5 && Player.GetComponent<PlayerBehavior>().alive == true) {
             Player.GetComponent<PlayerBehavior>().Death();
         }
         
@@ -70,10 +70,14 @@ public class Climbing : MonoBehaviour
                 StartCoroutine(ClimbInDirection(transform.position, transform.position + new Vector3(-1*tileLength,0,0)));
             }
             else if (bufferedDirection == ClimbingDirection.Down) {
-                StartCoroutine(ClimbInDirection(transform.position, transform.position + new Vector3(0,-1*tileLength,0)));
+                if (transform.position.y - tileLength >= -5) {
+                    StartCoroutine(ClimbInDirection(transform.position, transform.position + new Vector3(0,-1*tileLength,0)));
+                }
             }
             else if (bufferedDirection == ClimbingDirection.Right) {
-                StartCoroutine(ClimbInDirection(transform.position, transform.position + new Vector3(tileLength,0,0)));
+                if (transform.position.x + tileLength < rightLimit) {
+                    StartCoroutine(ClimbInDirection(transform.position, transform.position + new Vector3(tileLength,0,0)));
+                }
             }
             bufferedDirection = ClimbingDirection.None;
         }
@@ -103,7 +107,7 @@ public class Climbing : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.S)) {
             if (alreadyMoving == false) {
-                if (transform.position.y - tileLength >= 0) {
+                if (transform.position.y - tileLength >= -5) {
                     alreadyMoving = true;
                     StartCoroutine(ClimbInDirection(transform.position, transform.position + new Vector3(0,-1*tileLength,0)));
                 }
@@ -115,10 +119,10 @@ public class Climbing : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.D)) {
             if (alreadyMoving == false) {
-                // if (transform.position.x + tileLength < rightLimit) {
+                if (transform.position.x + tileLength < rightLimit) {
                     alreadyMoving = true;
                     StartCoroutine(ClimbInDirection(transform.position, transform.position + new Vector3(tileLength,0,0)));
-                // }
+                }
             }
             else {
                 bufferedDirection = ClimbingDirection.Right;

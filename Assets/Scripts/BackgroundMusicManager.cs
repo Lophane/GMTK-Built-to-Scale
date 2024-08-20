@@ -24,6 +24,12 @@ public class BackgroundMusicManager : MonoBehaviour
             audioSource.loop = true;
             audioSource.Play();
         }
+        if (backgroundMusicType == BackgroundMusicType.Customization) {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.clip = customizationMusicClip;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
     }
 
     // Update is called once per frame
@@ -31,11 +37,11 @@ public class BackgroundMusicManager : MonoBehaviour
     {
         if (backgroundMusicType == BackgroundMusicType.Climbing) {
             PlayerBehavior player = FindObjectOfType<PlayerBehavior>();
-            if (player.isHigh == false && player.transform.position.y > 500) {
-                player.isHigh = true;
-                audioSource.clip = highElevationClimbingMusicClip;
-                audioSource.Play();
-            }
+            // if (player.isHigh == false && player.transform.position.y > 500) {
+            //     player.isHigh = true;
+            //     audioSource.clip = highElevationClimbingMusicClip;
+            //     audioSource.Play();
+            // }
 
             if (player.alive == false) {
                 audioSource.Stop();

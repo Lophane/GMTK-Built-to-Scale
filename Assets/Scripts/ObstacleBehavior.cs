@@ -8,7 +8,7 @@ public class ObstacleBehavior : MonoBehaviour
     //these below variables will be set in the inspector for the prefabs of each unique obstacletype
     public ObstacleType obstacleType;
     public int hazardLevel;
-    public int durability;
+    public float durability;
     private GameObject target;
     
     private void Awake()
@@ -34,7 +34,7 @@ public class ObstacleBehavior : MonoBehaviour
         StartCoroutine(ObstacleMovementCoroutine(obstacleType));
     }
 
-    public void depleteDurability(int damage) {
+    public void depleteDurability(float damage) {
         durability -= damage;
         if (durability < 0) {
             durability = 0;
