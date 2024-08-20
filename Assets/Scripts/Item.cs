@@ -12,7 +12,7 @@ public class Item : MonoBehaviour
     [TextArea]
     [SerializeField]
     private string itemDescription;
-
+    
     private InventoryManager inventoryManager;
 
     public ItemType itemType;

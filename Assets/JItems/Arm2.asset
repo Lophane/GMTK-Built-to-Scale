@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 795675653c48df446ae4279201f82cd1, type: 3}
-  m_Name: Flamethrower
+  m_Name: Arm2
   m_EditorClassIdentifier: 
-  itemName: 
-  health: 0
-  speed: 0
-  cooldownReduction: 0
+  itemName: Arm2
+  health: 5
+  speed: 1
+  cooldownReduction: 2
   ability: 0
+  itemSprite: {fileID: 21300000, guid: 1c48ebfd110db3c4b8d350a2ce995b51, type: 3}
