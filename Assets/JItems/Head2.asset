@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Head2
   health: 1
   speed: 5
-  cooldownReduction: 2
+  cooldownReduction: 1
   ability: 0
   itemSprite: {fileID: 21300000, guid: 902c319e04f36794987e207b2220afcd, type: 3}

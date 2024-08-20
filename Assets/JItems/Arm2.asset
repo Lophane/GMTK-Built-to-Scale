@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Arm2
   health: 1
   speed: 5
-  cooldownReduction: 2
+  cooldownReduction: 1
   ability: 0
   itemSprite: {fileID: 21300000, guid: 5b96bb8bc3502514fa60ece605060b68, type: 3}
