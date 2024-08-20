@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/JTitleScreen.unity
+    guid: 916aef1f18efb7c4e81b1c1bbf6f3351
+  - enabled: 1
+    path: Assets/Scenes/EquipScene.unity
+    guid: 6f21e3dc874cd3e408cb58a506e57d9b
   - enabled: 1
     path: Assets/Scenes/ClimbingSceneM.unity
     guid: 482d38c3289c51a4490891df966fb9a7
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
-    guid: 7eff7719d946b414cb4c79b2cf34d711
-  - enabled: 1
-    path: Assets/Scenes/JEquipScene.unity
-    guid: 6f21e3dc874cd3e408cb58a506e57d9b
+    guid: 6efc04085d17d9c4ea1ed0f0166e84b2
   m_configObjects: {}

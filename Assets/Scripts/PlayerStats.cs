@@ -64,6 +64,7 @@ public class PlayerStats : MonoBehaviour
         gregoryStats.speed = speed;
         gregoryStats.cooldownReduction = cooldownReduction;
         gregoryStats.ability = ability;
+        Debug.Log("He got his shit");
     }
 
 }
