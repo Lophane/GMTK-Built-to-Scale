@@ -24,7 +24,7 @@ public class ObstacleSpawn : MonoBehaviour
             if (maxWaitTime <= 0f) {
                 maxWaitTime = 0.05f;
             }
-            nextDifficultySpikeElevation += 100;
+            nextDifficultySpikeElevation += 20;
         }  
     }
 

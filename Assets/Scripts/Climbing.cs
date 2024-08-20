@@ -57,7 +57,7 @@ public class Climbing : MonoBehaviour
             Destroy(Player.GetComponent<Rigidbody2D>());
         }
 
-        if(transform.position.y < -5 && Player.GetComponent<PlayerBehavior>().alive == true) {
+        if(transform.position.y < -6 && (transform.position.x < leftLimit || transform.position.x > rightLimit) && Player.GetComponent<PlayerBehavior>().alive == true) {
             Player.GetComponent<PlayerBehavior>().Death();
         }
         

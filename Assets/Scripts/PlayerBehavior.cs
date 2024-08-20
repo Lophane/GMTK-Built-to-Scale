@@ -39,10 +39,14 @@ public class PlayerBehavior : MonoBehaviour
     public void ToggleShieldOn() {
         // this.gameObject.transform.GetChild(0).SetActive(true);
         Debug.Log("shield on");
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        FindObjectOfType<ShieldBehavior>(includeInactive: true).gameObject.SetActive(true);  
+        Debug.Log("sprite should be on");
+        // gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ToggleShieldOff() {
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        Debug.Log("shield off");
+        // gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        FindObjectOfType<ShieldBehavior>(includeInactive: true).gameObject.SetActive(false);  
     }
 
     public void PlayDeathSound()
@@ -80,7 +84,7 @@ public class PlayerBehavior : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
         SpawnAudioSource = audioSources[0];
         DeathAudioSource = audioSources[1]; 
-        // ToggleShieldOff();
+        ToggleShieldOff();
 
         PlaySpawnSound();
 
@@ -96,28 +100,43 @@ public class PlayerBehavior : MonoBehaviour
     }
 
     private IEnumerator AbilityActivatingCoroutine(AbilityType ability) {
+        //yield return null : Pauses the coroutine until the next frame. yield return new WaitForSeconds(float seconds) : Pauses the coroutine for a specified number of seconds.
         if (ability == AbilityType.Flamethrower) {
             Debug.Log("flamethrower");
             float timeElapsed = 0;
-            while(timeElapsed < 1) {
+            while(timeElapsed < 0.3f) {
                 timeElapsed += Time.deltaTime;
                 Instantiate(flameBehavior);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
             }
-            yield return new WaitForSeconds(40-cooldownReducer);
+            yield return new WaitForSeconds(20-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
         }
 
         if (ability == AbilityType.Shield) {
-            Debug.Log("SHIELD WOOO");
+            // Debug.Log("SHIELD WOOO");
             float timeElapsed = 0;
             isVulnerable = false;
-            // ToggleShieldOn();
+            ToggleShieldOn();
             while (timeElapsed < 10) {
                 timeElapsed += Time.deltaTime;
+                yield return null;
             }
-            // ToggleShieldOff();
+            ToggleShieldOff();
             isVulnerable = true;
+            yield return new WaitForSeconds(20-cooldownReducer);
+            StartCoroutine(AbilityActivatingCoroutine(ability));
+        }
+
+        if (ability == AbilityType.Regeneration) {
+            Debug.Log("regenerating");
+            if (currentHealth < maxHealth) {
+                SetHealth(currentHealth+1);
+                GetComponent<SpriteRenderer>().color = new Color(0f, 255f, 0f, 1f);
+                yield return new WaitForSeconds(0.3f);
+                GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 1f);
+            }
+
             yield return new WaitForSeconds(20-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
         }

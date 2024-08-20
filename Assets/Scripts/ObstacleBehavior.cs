@@ -17,16 +17,16 @@ public class ObstacleBehavior : MonoBehaviour
         target = GameObject.Find("Player");
         Climbing climbing = target.GetComponent<Climbing>();
         if (obstacleType == ObstacleType.Boulder) {
-            hazardLevel = 1;
-            durability = 1;
+            hazardLevel = 4;
+            durability = 4;
         }
         if (obstacleType == ObstacleType.Gargoyle) {
-            hazardLevel = 3;
-            durability = 3;
+            hazardLevel = 2;
+            durability = 2;
         }
         if (obstacleType == ObstacleType.VileGrape) {
-            hazardLevel = 5;
-            durability = 5;
+            hazardLevel = 7;
+            durability = 7;
         }
         Random rnd = new Random();
         transform.position = new Vector3(((float) rnd.NextDouble()) * (climbing.rightLimit - climbing.leftLimit) + climbing.leftLimit, target.transform.position.y + 20f, 0f);
@@ -83,36 +83,47 @@ public class ObstacleBehavior : MonoBehaviour
 
         if (obstacleType == ObstacleType.VileGrape) {
 
-            
-            Vector3 startPosition = transform.position;
             while (true) {
-                if (startPosition.x < 0) {
-                    Vector3 endPosition = new Vector3(target.GetComponent<Climbing>().rightLimit, startPosition.y, 0f);
-                    float timeElapsed = 0;
-                    while (Mathf.Approximately(startPosition.x, endPosition.x) == false) {
-                        timeElapsed += Time.deltaTime;
-                        float lerpStep = 2;
-                        transform.position = Vector3.Lerp(startPosition,endPosition, lerpStep);
-                        yield return null;
-                    }
-                }
-
-                else {
-                    Vector3 endPosition = new Vector3(target.GetComponent<Climbing>().leftLimit, startPosition.y, 0f);
-                    float timeElapsed = 0;
-                    while (Mathf.Approximately(startPosition.x, endPosition.x) == false) {
-                        timeElapsed += Time.deltaTime;
-                        float lerpStep = 2;
-                        transform.position = Vector3.Lerp(startPosition,endPosition, lerpStep);
-                        yield return null;
-                    }
-                }
+                Vector3 startPosition = transform.position;
+                StartCoroutine(RightMovementCoroutine());
+                yield return null;
+                StartCoroutine(LeftMovementCoroutine());
+                yield return null;
             }
 
             
         }
 
     }
+
+    private IEnumerator RightMovementCoroutine() {
+        ObstacleSpawn obstacleSpawn = target.GetComponent<ObstacleSpawn>();
+        Vector3 startPosition = transform.position;
+        Vector3 endPosition = new Vector3(target.GetComponent<Climbing>().rightLimit, startPosition.y-1, startPosition.z);
+        float timeElapsed = 0;
+        float fallDuration = 3f - obstacleSpawn.difficultyLevel/5;
+        while (timeElapsed < fallDuration) {
+            timeElapsed += Time.deltaTime;
+            float lerpStep = timeElapsed/fallDuration;
+            transform.position = Vector3.Lerp(startPosition,endPosition, lerpStep);
+            yield return null;
+        }
+    }
+
+    private IEnumerator LeftMovementCoroutine() {
+        ObstacleSpawn obstacleSpawn = target.GetComponent<ObstacleSpawn>();
+        Vector3 startPosition = transform.position;
+        Vector3 endPosition = new Vector3(target.GetComponent<Climbing>().leftLimit, startPosition.y-1, startPosition.z);
+        float timeElapsed = 0;
+        float fallDuration = 3f - obstacleSpawn.difficultyLevel/5;
+        while (timeElapsed < fallDuration) {
+            timeElapsed += Time.deltaTime;
+            float lerpStep = timeElapsed/fallDuration;
+            transform.position = Vector3.Lerp(startPosition,endPosition, lerpStep);
+            yield return null;
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
