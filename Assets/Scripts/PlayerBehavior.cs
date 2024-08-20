@@ -143,7 +143,7 @@ public class PlayerBehavior : MonoBehaviour
                 StartCoroutine(ChangeColorBack());
             }
 
-            yield return new WaitForSeconds(3-cooldownReducer);
+            yield return new WaitForSeconds(15-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
         }
 
