@@ -6,14 +6,14 @@ public class FlameBehavior : MonoBehaviour
 {
     private Transform flameSource;
     private FlameDirection direction = FlameDirection.Up;
-    private int flameStrength = 1;
+    private float flameStrength = 0.01f;
     
     // Start is called before the first frame update
     void Start()
     {
         // Debug.Log("fire spawned");
         flameSource = GameObject.Find("Player").transform;
-        transform.position = flameSource.position + new Vector3(0f, 1f, 0f);
+        transform.position = flameSource.position + new Vector3(0f, 0.1f, 0f);
         StartCoroutine(FlameMovementCoroutine(direction, 5f));
     }
 
@@ -22,7 +22,7 @@ public class FlameBehavior : MonoBehaviour
         while (timeElapsed < flameDuration) {
             timeElapsed += Time.deltaTime;
             float lerpStep = timeElapsed/flameDuration;
-            transform.position = Vector3.Lerp(flameSource.position + new Vector3(0f, 1f, 0f), flameSource.position  + new Vector3(0f, 1f, 0f) + new Vector3(0f, 30f, 0f), lerpStep);
+            transform.position = Vector3.Lerp(flameSource.position + new Vector3(0f, 0.1f, 0f), flameSource.position  + new Vector3(0f, 0.1f, 0f) + new Vector3(0f, 30f, 0f), lerpStep);
             yield return null;
         }
         
@@ -38,6 +38,9 @@ public class FlameBehavior : MonoBehaviour
         //         obstacle.depleteDurability(flameStrength);
         //     }
         // }
+        if (transform.position.y > flameSource.transform.position.y + 5) {
+            Destroy(this.gameObject);
+        }
   
     }
 
@@ -50,9 +53,6 @@ public class FlameBehavior : MonoBehaviour
             obstacle.gameObject.GetComponent<ObstacleBehavior>().depleteDurability(flameStrength);
         }
     }
-
-
-
 
 }
 

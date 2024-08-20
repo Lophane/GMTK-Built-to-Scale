@@ -14,7 +14,7 @@ public class PlayerBehavior : MonoBehaviour
     private int maxHealth;
     private int currentHealth;
     private int cooldownReducer;
-    AbilityType[] possibleAbilities = {AbilityType.Flamethrower, AbilityType.Shield};
+    AbilityType[] possibleAbilities = {AbilityType.None, AbilityType.Flamethrower, AbilityType.Shield};
     private AbilityType ability;
 
     //sound effect stuff
@@ -86,8 +86,9 @@ public class PlayerBehavior : MonoBehaviour
         currentHealth = maxHealth; 
         cooldownReducer = stats.cooldownReduction;
         ability = possibleAbilities[stats.ability];
-
-        StartCoroutine(AbilityActivatingCoroutine(ability));
+        if (ability != AbilityType.None) {
+            StartCoroutine(AbilityActivatingCoroutine(ability));
+        }
     }
 
     private IEnumerator AbilityActivatingCoroutine(AbilityType ability) {
@@ -99,7 +100,7 @@ public class PlayerBehavior : MonoBehaviour
                 Instantiate(flameBehavior);
                 yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(10-cooldownReducer);
+            yield return new WaitForSeconds(40-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
         }
 
