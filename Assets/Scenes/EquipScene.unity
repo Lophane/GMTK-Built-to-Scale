@@ -4676,7 +4676,7 @@ GameObject:
   - component: {fileID: 796964733}
   - component: {fileID: 796964732}
   m_Layer: 0
-  m_Name: Shield (1)
+  m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4694,8 +4694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0cb5c752b475e4b902abca2a1e4ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Shield
-  sprite: {fileID: 1286037011, guid: 63fffa378dc96b94798b0beb4b2c65d4, type: 3}
+  itemName: Heart
+  sprite: {fileID: 21300000, guid: 23b179a238659344490a21b256fd47c5, type: 3}
   itemDescription: 
   itemType: 0
 --- !u!61 &796964733
@@ -6509,7 +6509,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1286037011, guid: 63fffa378dc96b94798b0beb4b2c65d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23b179a238659344490a21b256fd47c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11410,6 +11410,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2c69a0964fc1cab4b8734330ef384a71, type: 2}
   - {fileID: 11400000, guid: afcc6012019092943a40caa17b6b46ed, type: 2}
   - {fileID: 11400000, guid: 1384a4f4926b7c642b44d2171df610d9, type: 2}
+  - {fileID: 11400000, guid: bfd1682ac10c47841a97c10fdd116332, type: 2}
+  - {fileID: 11400000, guid: d597125debcb70641b0f31d14c6130b7, type: 2}
 --- !u!224 &1734463023 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4798894541756046988, guid: 789dd547b65bd0d4caa6da344319566c, type: 3}
