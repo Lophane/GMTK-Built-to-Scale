@@ -152,6 +152,7 @@ MonoBehaviour:
   leftLimit: -10
   rightLimit: 10
   tileLength: 2
+  stats: {fileID: 0}
 --- !u!114 &3960592702115634721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +171,6 @@ MonoBehaviour:
   obstacles:
   - {fileID: -5916099893524571221, guid: 98264c0e19bb25c4c9b3a31f76c0f69d, type: 3}
   - {fileID: 2701169299493552128, guid: 15502180b7efe614686444b6270ec3d6, type: 3}
-  - {fileID: 4126338475337864147, guid: ae1f2dea0207b9b458d5ab71b09229d2, type: 3}
 --- !u!114 &3717512940990514478
 MonoBehaviour:
   m_ObjectHideFlags: 0

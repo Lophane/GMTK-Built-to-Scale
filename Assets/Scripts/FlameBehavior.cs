@@ -11,6 +11,7 @@ public class FlameBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Debug.Log("fire spawned");
         flameSource = GameObject.Find("Player").transform;
         transform.position = flameSource.position + new Vector3(0f, 1f, 0f);
         StartCoroutine(FlameMovementCoroutine(direction, 5f));
@@ -24,6 +25,7 @@ public class FlameBehavior : MonoBehaviour
             transform.position = Vector3.Lerp(flameSource.position + new Vector3(0f, 1f, 0f), flameSource.position  + new Vector3(0f, 1f, 0f) + new Vector3(0f, 30f, 0f), lerpStep);
             yield return null;
         }
+        
         Destroy(this.gameObject);
         
     }
@@ -41,9 +43,10 @@ public class FlameBehavior : MonoBehaviour
 
     private void OnParticleCollision(GameObject obstacle)
     {
+        // Debug.Log("fire collision");
         if (obstacle.gameObject.GetComponent<ObstacleBehavior>() != null)
         {
-            Debug.Log("collision fire and object");
+            // Debug.Log("collision fire and object");
             obstacle.gameObject.GetComponent<ObstacleBehavior>().depleteDurability(flameStrength);
         }
     }

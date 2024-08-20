@@ -18,12 +18,18 @@ public class Climbing : MonoBehaviour
 
     private GameObject Player;
 
+    public GregoryStats stats;
+
     private ClimbingDirection bufferedDirection = ClimbingDirection.None;
 
 
     private IEnumerator ClimbInDirection(Vector3 startPosition, Vector3 endPosition) {
         float timeElapsed = 0;
-        float movementDuration = 0.3f;
+        float movementDuration = 0.3f - 0.1f*stats.speed;
+        if (movementDuration <= 0) {
+            movementDuration = 0.01f;
+        }
+
 
         while (timeElapsed < movementDuration) {
             timeElapsed += Time.deltaTime;

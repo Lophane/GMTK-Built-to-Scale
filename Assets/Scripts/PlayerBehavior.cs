@@ -6,7 +6,6 @@ public class PlayerBehavior : MonoBehaviour
 {
 
     //stats/condition
-    [SerializeField]
     public GregoryStats stats;
 
     public bool alive = true;
@@ -36,12 +35,14 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField]
     FlameBehavior flameBehavior;
     
-    // public void ToggleShieldOn() {
-    //     this.gameObject.transform.GetChild(0).SetActive(true);
-    // }
-    // public void ToggleShieldOff() {
-    //     this.gameObject.transform.GetChild(0).SetActive(false);
-    // }
+    public void ToggleShieldOn() {
+        // this.gameObject.transform.GetChild(0).SetActive(true);
+        Debug.Log("shield on");
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+    }
+    public void ToggleShieldOff() {
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+    }
 
     public void PlayDeathSound()
     {
@@ -76,6 +77,7 @@ public class PlayerBehavior : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
         SpawnAudioSource = audioSources[0];
         DeathAudioSource = audioSources[1]; 
+        ToggleShieldOff();
 
         PlaySpawnSound();
 
@@ -90,6 +92,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private IEnumerator AbilityActivatingCoroutine(AbilityType ability) {
         if (ability == AbilityType.Flamethrower) {
+            Debug.Log("flamethrower");
             float timeElapsed = 0;
             while(timeElapsed < 1) {
                 timeElapsed += Time.deltaTime;
@@ -104,11 +107,11 @@ public class PlayerBehavior : MonoBehaviour
             Debug.Log("SHIELD WOOO");
             float timeElapsed = 0;
             isVulnerable = false;
-            // ToggleShieldOn();
+            ToggleShieldOn();
             while (timeElapsed < 10) {
                 timeElapsed += Time.deltaTime;
             }
-            // ToggleShieldOff();
+            ToggleShieldOff();
             isVulnerable = true;
             yield return new WaitForSeconds(20-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
