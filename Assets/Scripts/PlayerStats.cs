@@ -22,6 +22,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private GameObject selectedItemImage;
 
+    public GregoryStats gregoryStats;
+
     private void Start()
     {
         UpdateEquipmentStats();
@@ -54,6 +56,14 @@ public class PlayerStats : MonoBehaviour
     {
         selectedItemImage.SetActive(false); 
         selectedItemStats.SetActive(false);
+    }
+
+    public void PushGregoryStats()
+    {
+        gregoryStats.health = health;
+        gregoryStats.speed = speed;
+        gregoryStats.cooldownReduction = cooldownReduction;
+        gregoryStats.ability = ability;
     }
 
 }

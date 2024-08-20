@@ -126,6 +126,8 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
                 equipmentSOLibrary.equipmentSO[i].UnEquipItem();
         }
 
+        GameObject.Find("StatManager").GetComponent<PlayerStats>().TurnOffPreviewStats();
+
     }
 
 }

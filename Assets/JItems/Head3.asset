@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 795675653c48df446ae4279201f82cd1, type: 3}
-  m_Name: Arm3
+  m_Name: Head3
   m_EditorClassIdentifier: 
-  itemName: Arm3
+  itemName: Head3
   health: 1
   speed: 5
   cooldownReduction: 1
   ability: 0
-  itemSprite: {fileID: 21300000, guid: 82a0fbc20f18ed04483dfb88a81fa709, type: 3}
+  itemSprite: {fileID: 21300000, guid: a47cd38532602704889db66f814939c9, type: 3}

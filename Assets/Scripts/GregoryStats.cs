@@ -9,4 +9,5 @@ public class GregoryStats : ScriptableObject
     public int cooldownReduction;
     public int speed;
     public int ability;
+
 }
