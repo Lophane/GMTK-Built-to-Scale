@@ -10,7 +10,12 @@ public class ObstacleBehavior : MonoBehaviour
     public int hazardLevel;
     public float durability;
     private GameObject target;
-    
+
+    private IEnumerator ChangeColorBack() {
+        yield return new WaitForSeconds(0.3f);
+        GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 1f);
+    }
+
     private void Awake()
     {
         this.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
@@ -39,6 +44,8 @@ public class ObstacleBehavior : MonoBehaviour
         if (durability < 0) {
             durability = 0;
         }
+        GetComponent<SpriteRenderer>().color = new Color(255f, 0f, 0f, 1f);
+        StartCoroutine(ChangeColorBack());
     }
 
     private IEnumerator ObstacleMovementCoroutine(ObstacleType obstacleType) {
