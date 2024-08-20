@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PlayerBehavior : MonoBehaviour
     private int maxHealth;
     private int currentHealth;
     private int cooldownReducer;
-    AbilityType[] possibleAbilities = {AbilityType.None, AbilityType.Flamethrower, AbilityType.Shield};
+    AbilityType[] possibleAbilities = {AbilityType.None, AbilityType.Flamethrower, AbilityType.Shield, AbilityType.Regeneration};
     private AbilityType ability;
 
     //sound effect stuff
@@ -62,6 +63,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public void SetHealth(int health) {
         currentHealth = health;
+        GameObject.Find("UI").GetComponent<HealthUI>().UpdateHealthUI(currentHealth);
     }
     
     public void DepleteHealth(int damage) {
@@ -69,6 +71,7 @@ public class PlayerBehavior : MonoBehaviour
         if (currentHealth < 0) {
             currentHealth = 0;
         }
+        GameObject.Find("UI").GetComponent<HealthUI>().UpdateHealthUI(currentHealth);
     }
 
     // Start is called before the first frame update
@@ -77,13 +80,14 @@ public class PlayerBehavior : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
         SpawnAudioSource = audioSources[0];
         DeathAudioSource = audioSources[1]; 
-        ToggleShieldOff();
+        // ToggleShieldOff();
 
         PlaySpawnSound();
 
 
         maxHealth = stats.health;
         currentHealth = maxHealth; 
+        GameObject.Find("UI").GetComponent<HealthUI>().UpdateHealthUI(currentHealth);
         cooldownReducer = stats.cooldownReduction;
         ability = possibleAbilities[stats.ability];
         if (ability != AbilityType.None) {
@@ -108,11 +112,11 @@ public class PlayerBehavior : MonoBehaviour
             Debug.Log("SHIELD WOOO");
             float timeElapsed = 0;
             isVulnerable = false;
-            ToggleShieldOn();
+            // ToggleShieldOn();
             while (timeElapsed < 10) {
                 timeElapsed += Time.deltaTime;
             }
-            ToggleShieldOff();
+            // ToggleShieldOff();
             isVulnerable = true;
             yield return new WaitForSeconds(20-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
@@ -127,6 +131,7 @@ public class PlayerBehavior : MonoBehaviour
         //this is where to add the code for what happens when game ends.
         PlayDeathSound();
         //then switch scene to gameover scene
+        SceneManager.LoadScene("EquipScene");
     }
 
     // Update is called once per frame
@@ -144,5 +149,6 @@ public class PlayerBehavior : MonoBehaviour
 public enum AbilityType {  //obstacletype of the obstacle the script is attached to will affect the obstacles behavior
     None,
     Flamethrower,
-    Shield
+    Shield,
+    Regeneration
 }

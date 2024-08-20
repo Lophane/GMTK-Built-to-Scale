@@ -7,7 +7,7 @@ public class ObstacleSpawn : MonoBehaviour
 {
     public int difficultyLevel = 1;
     public int nextDifficultySpikeElevation = 100;
-    public float maxWaitTime = 5;
+    public float maxWaitTime = 3f;
     
     [SerializeField]
     private List<ObstacleBehavior> obstacles;
@@ -20,8 +20,9 @@ public class ObstacleSpawn : MonoBehaviour
     {
         if (transform.position.y > nextDifficultySpikeElevation) {
             difficultyLevel += 1;
-            if (maxWaitTime > 1) {
-                maxWaitTime -= 0.2f;
+            maxWaitTime -= 0.2f;
+            if (maxWaitTime <= 0f) {
+                maxWaitTime = 0.05f;
             }
             nextDifficultySpikeElevation += 100;
         }  
@@ -32,14 +33,14 @@ public class ObstacleSpawn : MonoBehaviour
         foreach (var obstacle in obstacles) {
                 // Debug.Log(obstacle.obstacleType);
             
-                int hazardRoll  = rnd.Next(1, 11);  // creates a number between 1 and 10. if this number is >= than the hazard level of an obstacle type, obstacle that satisfies this is the next obstacle that will spawn.
+                int hazardRoll  = rnd.Next(1, 20);  // creates a number between 1 and 10. if this number is >= than the hazard level of an obstacle type, obstacle that satisfies this is the next obstacle that will spawn.
                 
                 if (hazardRoll >= obstacle.hazardLevel) {
                     //60% chance of spawning an obstacle ever time an obstacle is considered in the running
-                    int spawnRoll  = rnd.Next(1, 11);
-                    if (spawnRoll > 4) {
+                    // int spawnRoll  = rnd.Next(1, 11);
+                    // if (spawnRoll > 4) {
                         Instantiate(obstacle);
-                    }
+                    // }
                 }
             
         }
