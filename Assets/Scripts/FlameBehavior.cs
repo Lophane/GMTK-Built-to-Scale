@@ -6,7 +6,7 @@ public class FlameBehavior : MonoBehaviour
 {
     private Transform flameSource;
     private FlameDirection direction = FlameDirection.Up;
-    private float flameStrength = 0.01f;
+    private float flameStrength = 0.1f;
     
     // Start is called before the first frame update
     void Start()
