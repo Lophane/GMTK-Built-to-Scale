@@ -9,7 +9,7 @@ public class ScoreTracker : MonoBehaviour
 
     void Update()
     {
-         int verticalPosition = ((int) targetObject.transform.position.y + offset)/2;
+         int verticalPosition = ((int) targetObject.transform.position.y + offset);
 
          targetText.text = "Height: " + verticalPosition.ToString();
         
