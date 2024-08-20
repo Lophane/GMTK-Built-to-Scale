@@ -49,6 +49,11 @@ public class PlayerBehavior : MonoBehaviour
         FindObjectOfType<ShieldBehavior>(includeInactive: true).gameObject.SetActive(false);  
     }
 
+    private IEnumerator ChangeColorBack() {
+        yield return new WaitForSeconds(0.3f);
+        GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 1f);
+    }
+
     public void PlayDeathSound()
     {
         if (transform.position.y < 500) {
@@ -76,6 +81,8 @@ public class PlayerBehavior : MonoBehaviour
             currentHealth = 0;
         }
         GameObject.Find("UI").GetComponent<HealthUI>().UpdateHealthUI(currentHealth);
+        GetComponent<SpriteRenderer>().color = new Color(255f, 0f, 0f, 1f);
+        StartCoroutine(ChangeColorBack());
     }
 
     // Start is called before the first frame update
@@ -133,11 +140,10 @@ public class PlayerBehavior : MonoBehaviour
             if (currentHealth < maxHealth) {
                 SetHealth(currentHealth+1);
                 GetComponent<SpriteRenderer>().color = new Color(0f, 255f, 0f, 1f);
-                yield return new WaitForSeconds(0.3f);
-                GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 1f);
+                StartCoroutine(ChangeColorBack());
             }
 
-            yield return new WaitForSeconds(20-cooldownReducer);
+            yield return new WaitForSeconds(3-cooldownReducer);
             StartCoroutine(AbilityActivatingCoroutine(ability));
         }
 
@@ -150,7 +156,7 @@ public class PlayerBehavior : MonoBehaviour
         //this is where to add the code for what happens when game ends.
         PlayDeathSound();
         //then switch scene to gameover scene
-        SceneManager.LoadScene("EquipScene");
+        SceneManager.LoadScene("GameOverScene");
     }
 
     // Update is called once per frame
