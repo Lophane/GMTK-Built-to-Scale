@@ -232,7 +232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &563935797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 41
     m_Right: 0
-    m_Top: 325
+    m_Top: 121
     m_Bottom: 0
   m_ChildAlignment: 3
   m_Spacing: 0
@@ -482,8 +482,8 @@ RectTransform:
   m_GameObject: {fileID: 857119535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1879265049}
   m_Father: {fileID: 1066986275}
@@ -492,7 +492,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 299.71, y: 129.9}
+  m_SizeDelta: {x: 403.71, y: 129.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &857119537
 MonoBehaviour:
@@ -523,8 +523,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 1219011993, guid: b755dfe5f0876574b84153b72d340522, type: 3}
-    m_PressedSprite: {fileID: 1004838653, guid: b755dfe5f0876574b84153b72d340522, type: 3}
+    m_HighlightedSprite: {fileID: 221891567, guid: a94bcaec357dbc14b857874e5f16510b, type: 3}
+    m_PressedSprite: {fileID: 1088864361, guid: a94bcaec357dbc14b857874e5f16510b, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -570,7 +570,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 326266175, guid: b755dfe5f0876574b84153b72d340522, type: 3}
+  m_Sprite: {fileID: 643018764, guid: a94bcaec357dbc14b857874e5f16510b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -697,7 +697,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 555}
+  m_SizeDelta: {x: 138.5759, y: 222.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1066986276
 MonoBehaviour:
@@ -714,10 +714,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 55
-    m_Bottom: 43
+    m_Top: 0
+    m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: -69.27
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -792,7 +792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1170974791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -938,8 +938,8 @@ RectTransform:
   m_GameObject: {fileID: 1206465827}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1170974791}
   m_Father: {fileID: 1066986275}
@@ -948,7 +948,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 299.71, y: 129.9}
+  m_SizeDelta: {x: 403.71, y: 129.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1206465829
 MonoBehaviour:
@@ -979,8 +979,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 1219011993, guid: b755dfe5f0876574b84153b72d340522, type: 3}
-    m_PressedSprite: {fileID: 1004838653, guid: b755dfe5f0876574b84153b72d340522, type: 3}
+    m_HighlightedSprite: {fileID: 1123251493, guid: c38e3552f504970408b91d58b84c458e, type: 3}
+    m_PressedSprite: {fileID: 399257702, guid: c38e3552f504970408b91d58b84c458e, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 326266175, guid: b755dfe5f0876574b84153b72d340522, type: 3}
+  m_Sprite: {fileID: 2020775370, guid: c38e3552f504970408b91d58b84c458e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1072,8 +1072,8 @@ RectTransform:
   m_GameObject: {fileID: 1542074546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 563935797}
   m_Father: {fileID: 1066986275}
@@ -1082,7 +1082,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 299.71, y: 129.9}
+  m_SizeDelta: {x: 403.71, y: 129.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1542074548
 MonoBehaviour:
@@ -1113,8 +1113,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 1219011993, guid: b755dfe5f0876574b84153b72d340522, type: 3}
-    m_PressedSprite: {fileID: 1004838653, guid: b755dfe5f0876574b84153b72d340522, type: 3}
+    m_HighlightedSprite: {fileID: 1751779097, guid: e1782d18dca8c644ba71f061d3bc5057, type: 3}
+    m_PressedSprite: {fileID: 1168311617, guid: e1782d18dca8c644ba71f061d3bc5057, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 326266175, guid: b755dfe5f0876574b84153b72d340522, type: 3}
+  m_Sprite: {fileID: -494431110, guid: e1782d18dca8c644ba71f061d3bc5057, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1298,7 +1298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1879265049
 RectTransform:
   m_ObjectHideFlags: 0

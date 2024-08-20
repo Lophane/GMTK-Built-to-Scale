@@ -7778,7 +7778,7 @@ MonoBehaviour:
   health: 5
   speed: 5
   cooldownReduction: 0
-  ability: 1
+  ability: 0
   healthText: {fileID: 880049597}
   speedText: {fileID: 902325160}
   cooldownReductionText: {fileID: 1192103991}

@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         UpdateEquipmentStats();
+        PushGregoryStats();
     }
 
 
